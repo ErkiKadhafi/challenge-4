@@ -2,9 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.layout{
+body {
+    min-width: 1348px;
+}
+
+.layout {
     max-width: 1168px;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+.right-container {
+    right: 0;
+}
+@media only screen and (min-width: 1540px) {
+    .right-container {
+        right: calc((100vw - 1568px) / 2 + 100px);
+    }
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    background: url("../public/images/fi_calendar.png") no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+    margin-top: 1px;
 }
