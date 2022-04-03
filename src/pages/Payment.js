@@ -1,9 +1,141 @@
+import { useState } from "react";
+import Accordion from "../components/Accordion";
 import Filter from "../components/Filter";
 
+const DisclosureBtn = (props) => (
+  <div
+    className={`flex items-center justify-between ${
+      !props.open ? "pb-2" : null
+    }`}
+  >
+    <div className="flex space-x-22px">
+      <span className="font-light">Total</span>
+      {props.open ? (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 15L12 9L6 15"
+            stroke="#000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      ) : (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 9L12 15L6 9"
+            stroke="#151515"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      )}
+    </div>
+    <p>Rp 430.000</p>
+  </div>
+);
+const DisclosureLists = () => (
+  <>
+    <div className="mb-6">
+      <p className="font-bold mb-2">Harga</p>
+      <ul className="list-disc pl-5">
+        <li>
+          <div className="flex justify-between font-light">
+            <span>1 Mobil dengan supir</span>
+            <span>Rp 430.000</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div className="mb-6">
+      <p className="font-bold mb-2">Biaya Lainnya</p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li>
+          <div className="flex justify-between font-light">
+            <span>Pajak</span>
+            <span className="text-green-primary">Termasuk </span>
+          </div>
+        </li>
+        <li>
+          <div className="flex justify-between font-light">
+            <span>Biaya Makan</span>
+            <span className="text-green-primary">Termasuk </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div className="mb-6">
+      <p className="font-bold mb-2">Biaya Lainnya</p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li>
+          <div className="flex justify-between font-light">
+            <span>Bensin</span>
+          </div>
+        </li>
+        <li>
+          <div className="flex justify-between font-light">
+            <span>Tol dan parkir</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </>
+);
+
 const Payment = () => {
+  const banks = ["BCA", "BNI", "Mandiri"];
+  const [bankTransfer, setBankTransfer] = useState(null);
   return (
     <>
-      <section className="relative bg-blue-secondary pt-52">
+      <section className="relative bg-blue-secondary pt-133px pb-28">
+        <div
+          className="layout flex items-center justify-between "
+          style={{ maxWidth: "1047px" }}
+        >
+          <div className="flex space-x-4">
+            {/* prettier-ignore */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 12H5" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 19L5 12L12 5" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span className="font-bold">Pembayaran</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <div className="h-4 w-4 rounded-full bg-blue-primary text-white flex items-center justify-center items-center">
+                <span className="text-xs">1</span>
+              </div>
+              <span>Pilih Metode</span>
+            </div>
+            <div className="bg-blue-primary h-0.5 w-8"></div>
+            <div className="flex items-center space-x-2">
+              <div className="h-4 w-4 rounded-full bg-white text-blue-primary border border-blue-primary flex items-center justify-center items-center">
+                <span className="text-xs">2</span>
+              </div>
+              <span>Pilih Metode</span>
+            </div>
+            <div className="bg-blue-primary h-0.5 w-8"></div>
+            <div className="flex items-center space-x-2">
+              <div className="h-4 w-4 rounded-full bg-white text-blue-primary border border-blue-primary flex items-center justify-center items-center">
+                <span className="text-xs">3</span>
+              </div>
+              <span>Tiket</span>
+            </div>
+          </div>
+        </div>
         <Filter />
       </section>
       <section className="pt-28">
@@ -12,7 +144,7 @@ const Payment = () => {
           style={{ maxWidth: "1047px" }}
         >
           <div
-            className="col-span-3 rounded-lg p-6 text-sm mb-6"
+            className="col-span-3 rounded-lg p-6 text-sm mb-6 h-fit"
             style={{
               boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.15)",
             }}
@@ -23,24 +155,28 @@ const Payment = () => {
               atau Mobile Banking
             </p>
             <ul className="mt-0.5">
-              <li className="text-sm font-light space-x-4 flex items-center py-4  border-b">
-                <div className="block py-1.5 w-16 border rounded text-center">
-                  BCA
-                </div>
-                <span className="block">BCA Transfer</span>
-              </li>
-              <li className="text-sm font-light space-x-4 flex items-center py-4  border-b">
-                <div className="block py-1.5 w-16 border rounded text-center">
-                  BNI
-                </div>
-                <span className="block">BNI Transfer</span>
-              </li>
-              <li className="text-sm font-light space-x-4 flex items-center py-4  border-b">
-                <div className="block py-1.5 w-16 border rounded text-center">
-                  Mandiri
-                </div>
-                <span className="block">Mandiri Transfer</span>
-              </li>
+              {banks.map((bank, index) => (
+                <li
+                  key={index}
+                  onClick={() => setBankTransfer(bank)}
+                  className="flex justify-between items-center text-sm font-light py-4 border-b"
+                >
+                  <div className="space-x-4 flex items-center">
+                    <div className="block py-1.5 w-16 border rounded text-center">
+                      {bank}
+                    </div>
+                    <span className="block">BCA Transfer</span>
+                  </div>
+                  {bankTransfer === bank ? (
+                    <>
+                      {/* prettier-ignore  */}
+                      <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 1L6 12L1 7" stroke="#5CB85F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </>
+                  ) : null}
+                </li>
+              ))}
             </ul>
           </div>
           <div
@@ -82,6 +218,27 @@ const Payment = () => {
                 </li>
               </ul>
             </div>
+            <Accordion
+              discButton={DisclosureBtn}
+              discPanel={DisclosureLists}
+              discPanelAs="div"
+            />
+            <div className="border-t pt-4 mb-6">
+              <div className="flex justify-between text-sm font-bold">
+                <span>Total</span>
+                <span>Rp 430.000</span>
+              </div>
+            </div>
+            <button
+              disabled={bankTransfer === null ? true : false}
+              className={`w-full px-3 py-2 font-bold ${
+                bankTransfer === null
+                  ? "bg-green-limeGreen"
+                  : "bg-green-primary hover:bg-green-secondary hover:text-green-primary"
+              }  text-white transition-all duration-200 rounded-sm`}
+            >
+              Bayar
+            </button>
           </div>
         </div>
       </section>
