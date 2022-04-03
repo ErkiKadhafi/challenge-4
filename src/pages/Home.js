@@ -1,5 +1,4 @@
 import Filter from "../components/Filter";
-import Footer from "../components/Footer";
 
 const Home = () => {
     return (
